@@ -17,10 +17,11 @@ export default function Registration() {
     localStorage.setItem('email', email);
     localStorage.setItem('password', password);
     alert('Registrazione completata! Ora puoi eseguire il login.');
+    navigate("/");
   };
 
   return (
-    <div className="p-10">
+    <div className="w-full p-10">
       <h1 className="text-4xl font-bold text-center text-primary500">
         Theory Holding Dev Test
       </h1>

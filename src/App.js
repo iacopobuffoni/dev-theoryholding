@@ -2,8 +2,9 @@ import { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 
-const Registration = lazy(() => import("./components/registration-section/registration"));
+const Dashboard = lazy(() => import("./components/dashboard-section/dashboard")); 
 const Login = lazy(() => import("./components/login-section/login"));
+const Registration = lazy(() => import("./components/registration-section/registration"));
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={isRegistered ? <Login /> : <Registration />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
