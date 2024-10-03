@@ -7,8 +7,8 @@ export default function Settings() {
   const [password, setPassword] = useState(localStorage.getItem("password"));
   const [profilePicture, setProfilePicture] = useState(localStorage.getItem("profilePicture") || "");
 
-  const handleUpdateInfo = (e) => {
-    //Aggiornamento delle informazioni  
+  //Aggiornamento delle informazioni 
+  const handleUpdateInfo = (e) => { 
     if (e !== localStorage.getItem("name")) localStorage.setItem('name', name);
     if (e !== localStorage.getItem("surname")) localStorage.setItem('surname', surname);
     if (e !== localStorage.getItem("email")) localStorage.setItem('email', email);
@@ -17,8 +17,8 @@ export default function Settings() {
     alert('Informazioni aggiornate! Aggiorna per vedere');
   };
 
+  //Cambio foto profilo
   const handleProfilePictureChange = (e) => {
-    //Cambio foto profilo
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -29,8 +29,8 @@ export default function Settings() {
     }
   };
 
+  //Eliminazione account
   const handleDeleteAccount = () => {
-    //Eliminazione account
     localStorage.clear();
     window.location.reload();
   };

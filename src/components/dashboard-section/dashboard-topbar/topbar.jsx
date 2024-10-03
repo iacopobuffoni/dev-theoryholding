@@ -4,11 +4,16 @@ import defaultProfilePicture from "../../../images/logo192.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Topbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [userPhoto, setUserPhoto] = useState(localStorage.getItem("profilePicture") || defaultProfilePicture);
   const username = localStorage.getItem("name");
   const navigate = useNavigate();
-  const toggleUserMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleUserMenu = () => setIsUserMenuOpen(!isUserMenuOpen);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/");
+  };
 
   return (
     <div className="w-full h-[80px] bg-gray200 flex justify-end px-4">
@@ -20,7 +25,7 @@ export default function Topbar() {
         >
           <span className="text-gray700 text-xl">{username}</span>
           <img src={chevronDown} alt="chevron-down" className="mt-1"/>
-          {isMenuOpen && 
+          {isUserMenuOpen && 
             <>
               <div 
                 className="absolute w-[200px] bg-gray100 right-0 top-10 rounded-md" 
@@ -28,10 +33,7 @@ export default function Topbar() {
                 <div className="p-4 hover:bg-gray300 rounded-md" onClick={() => navigate("/dashboard/settings")}>
                   Impostazioni profilo
                 </div>
-                <div className="p-4 hover:bg-gray300 rounded-md" onClick={() => {
-                  localStorage.removeItem("isLoggedIn");
-                  navigate("/");
-                }}>
+                <div className="p-4 hover:bg-gray300 rounded-md" onClick={handleLogout}>
                   Logout
                 </div>
               </div>

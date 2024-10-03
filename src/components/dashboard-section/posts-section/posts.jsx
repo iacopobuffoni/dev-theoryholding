@@ -6,7 +6,9 @@ import { useAppContext } from "../../../contexts/context";
 export default function Posts() {
   const navigate = useNavigate();
   const {posts, setPosts} = useAppContext();
-  const [isMenuOpen1, setIsMenuOpen1] = useState(false);
+  const [isPostMenuOpen, setIsPostMenuOpen] = useState(false);
+
+  //Eliminazione post
   const handleDeletePost = (index) => {
     setPosts(posts.filter((_, i) => i !== index));
   };
@@ -33,12 +35,12 @@ export default function Posts() {
             />
             <span className="font-semibold text-sm">{localStorage.getItem("name")}</span> 
             </div>
-            <button onClick={() => setIsMenuOpen1(!isMenuOpen1)}>
+            <button onClick={() => setIsPostMenuOpen(!isPostMenuOpen)}>
               <svg className="w-6 h-6 ml-auto text-gray-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
               </svg>
             </button>
-            {isMenuOpen1 && 
+            {isPostMenuOpen && 
               <div 
                 className="absolute w-[200px] bg-gray100 right-0 top-10 rounded-md cur" 
                 onClick={() => handleDeletePost(index)}

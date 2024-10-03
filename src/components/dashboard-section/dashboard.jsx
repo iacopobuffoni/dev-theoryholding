@@ -1,7 +1,7 @@
 import React from "react";
+import Leftbar from "./dashboard-leftbar/leftbar";
 import { Outlet } from "react-router-dom";
 import Topbar from "./dashboard-topbar/topbar";
-import Leftbar from "./dashboard-leftbar/leftbar";
 
 export default function Dashboard() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
