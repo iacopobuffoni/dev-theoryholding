@@ -8,7 +8,7 @@ export default function Topbar() {
   const [userPhoto, setUserPhoto] = useState(localStorage.getItem("profilePicture") || defaultProfilePicture);
   const username = localStorage.getItem("name");
   const navigate = useNavigate();
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleUserMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <div className="w-full h-[80px] bg-gray200 flex justify-end px-4">
@@ -16,19 +16,26 @@ export default function Topbar() {
         {/* Menu a tendina */}
         <button 
           className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 font-medium relative" 
-          onClick={toggleMenu}
+          onClick={toggleUserMenu}
         >
           <span className="text-gray700 text-xl">{username}</span>
           <img src={chevronDown} alt="chevron-down" className="mt-1"/>
           {isMenuOpen && 
-            <div 
-              className="absolute w-[200px] bg-gray100 right-0 top-10 rounded-md" 
-              onClick={() => navigate("/dashboard/settings")}
-            >
-              <div className="p-4">
-                Impostazioni profilo
+            <>
+              <div 
+                className="absolute w-[200px] bg-gray100 right-0 top-10 rounded-md" 
+              >
+                <div className="p-4 hover:bg-gray300 rounded-md" onClick={() => navigate("/dashboard/settings")}>
+                  Impostazioni profilo
+                </div>
+                <div className="p-4 hover:bg-gray300 rounded-md" onClick={() => {
+                  localStorage.removeItem("isLoggedIn");
+                  navigate("/");
+                }}>
+                  Logout
+                </div>
               </div>
-            </div>
+            </>
           }
         </button>
         <img src={userPhoto} alt="user-photo" className="h-full" />

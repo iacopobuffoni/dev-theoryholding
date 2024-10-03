@@ -11,6 +11,7 @@ export default function Login() {
     e.preventDefault();
     if (localStorage.getItem("email") === email && localStorage.getItem("password") === password) {
       navigate('/dashboard');
+      localStorage.setItem("isLoggedIn", true);
     } else {
       alert('Credenziali errate!');
     }
